@@ -1,0 +1,9 @@
+@mixin bg-blur-fross-light { backdrop-filter: blur(1px); }
+.bg-blur-fross-light { @include bg-blur-fross-light; }
+
+@mixin bg-blur-fross-glass { backdrop-filter: blur(5px); }
+.bg-blur-fross-glass { @include bg-blur-fross-glass; }
+
+//.bg-blur-fross-thick { backdrop-filter: blur(20px); }
+@mixin bg-blur-fross-thick { backdrop-filter: blur(5px) blur(5px) blur(5px) blur(5px); }
+.bg-blur-fross-thick { @include bg-blur-fross-thick; }

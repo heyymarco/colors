@@ -1,0 +1,33 @@
+@function color-darken($level) {
+    @return change-color(#000000, $alpha: $level);
+}
+@function color-lighten($level) {
+    @return change-color(#ffffff, $alpha: $level);
+}
+
+
+
+@function color-fade($color, $start: 0, $end: 1, $angle: 0) {
+    @return linear-gradient(
+        #{$angle+180}deg,
+        #{change-color($color, $alpha: $start)} 0%,
+        #{change-color($color, $alpha: $end)}   100%
+    )
+}
+@function color-fade-horz($color, $start: 0, $end: 100) {
+    @return color-fade($color, $start, $end, -90);
+}
+
+@function color-fadein($color, $start: 0, $angle: 0) {
+    @return color-fade($color, $start, 100, $angle);
+}
+@function color-fadein-horz($color, $start: 0) {
+    @return color-fadein($color, $start, -90);
+}
+
+@function color-fadeout($color, $end: 0, $angle: 0) {
+    @return color-fade($color, 100, $end, $angle);
+}
+@function color-fadeout-horz($color, $end: 0) {
+    @return color-fadeout($color, $end, -90);
+}

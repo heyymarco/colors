@@ -1,0 +1,51 @@
+@use "bootstrap" as bs;
+
+
+
+$white:    bs.$white    !default;
+$gray-100: bs.$gray-100 !default;
+$gray-200: bs.$gray-200 !default;
+$gray-300: bs.$gray-300 !default;
+$gray-400: bs.$gray-400 !default;
+$gray-500: bs.$gray-500 !default;
+$gray-600: bs.$gray-600 !default;
+$gray-700: bs.$gray-700 !default;
+$gray-800: bs.$gray-800 !default;
+$gray-900: bs.$gray-900 !default;
+$black:    bs.$black    !default;
+
+$grays: bs.$grays !default;
+
+$blue:    bs.$blue   !default;
+$indigo:  bs.$indigo !default;
+$purple:  bs.$purple !default;
+$pink:    bs.$pink   !default;
+$red:     bs.$red    !default;
+$orange:  bs.$orange !default;
+$yellow:  bs.$yellow !default;
+$green:   bs.$green  !default;
+$teal:    bs.$teal   !default;
+$cyan:    bs.$cyan   !default;
+
+$colors: bs.$colors !default;
+
+$primary:       bs.$primary   !default;
+$secondary:     bs.$secondary !default;
+$success:       bs.$success   !default;
+$info:          bs.$info      !default;
+$warning:       bs.$warning   !default;
+$danger:        bs.$danger    !default;
+$light:         bs.$light     !default;
+$dark:          bs.$dark      !default;
+
+$theme-colors: bs.$theme-colors !default;
+
+// Set a specific jump point for requesting color jumps
+$theme-color-interval:      bs.$theme-color-interval !default;
+
+// The yiq lightness value that determines when the lightness of color changes from "dark" to "light". Acceptable values are between 0 and 255.
+$yiq-contrasted-threshold:  bs.$yiq-contrasted-threshold !default;
+
+// Customize the light and dark text colors for use in our YIQ color contrast function.
+$yiq-text-dark:             bs.$yiq-text-dark !default;
+$yiq-text-light:            bs.$yiq-text-light !default;

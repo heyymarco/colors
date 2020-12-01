@@ -1,0 +1,68 @@
+@import "bootstrap-color";
+@import "bootstrap-color-func";
+
+
+
+/* begin: add transparent version of $colors */
+$colors-transp: () !default;
+$colors-transp-level: 0.25 !default;
+@if (($colors-transp-level > 0) && ($colors-transp-level < 1)) {
+    @each $color, $value in $colors {
+        $colors-transp: map-merge($colors-transp, (
+            #{$color}-transp: change-color($value, $alpha: $colors-transp-level)
+        ));
+    }
+    $colors: map-merge($colors,
+        $colors-transp
+    );
+}
+/* end: add transparent version of $colors */
+
+
+
+/* begin: add transparent version of $theme-colors */
+$theme-colors-transp: () !default;
+$theme-colors-transp-level: 0.25 !default;
+@if (($theme-colors-transp-level > 0) && ($theme-colors-transp-level < 1)) {
+    @each $color, $value in $theme-colors {
+        $theme-colors-transp: map-merge($theme-colors-transp, (
+            #{$color}-transp: change-color($value, $alpha: $theme-colors-transp-level)
+        ));
+    }
+    $theme-colors: map-merge($theme-colors,
+        $theme-colors-transp
+    );
+}
+/* end: add transparent version of $theme-colors */
+
+
+
+$emit-css-var: true !default;
+@if ($emit-css-var == true) {
+    /* begin: $theme-colors in css variables */
+    $theme-colors-cssvar: ();
+    @each $color, $value in $theme-colors {
+        $theme-colors-cssvar: map-merge($theme-colors-cssvar, (
+            $color: var(--#{$color})
+        ));
+    }
+    /* end: $theme-colors in css variables */
+    
+    
+    
+    :root {
+        @each $color, $value in $colors {
+            --#{$color}: #{$value};
+        }
+        
+        @each $color, $value in $theme-colors {
+            --#{$color}: #{$value};
+        }
+    }
+}
+
+
+
+@import "function";
+@import "border";
+@import "background";

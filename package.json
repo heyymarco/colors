@@ -1,0 +1,26 @@
+{
+  "name": "@heymarco/colors",
+  "version": "1.0.0",
+  "description": "a set of common color definitions.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/heyymarco/colors.git"
+  },
+  "keywords": [
+    "color",
+    "colors",
+    "web"
+  ],
+  "author": "HeyMarco",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/heyymarco/colors/issues"
+  },
+  "homepage": "https://github.com/heyymarco/colors#readme",
+  "dependencies": {
+    "bootstrap": "^4.5.3"
+  }
+}
