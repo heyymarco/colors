@@ -3,6 +3,13 @@
 
 
 
+// add black to the color list:
+$colors: map-merge($colors, (
+    "black":  $black
+));
+
+
+
 /* begin: add transparent version of $colors */
 $colors-transp: () !default;
 $colors-transp-level: 0.25 !default;
