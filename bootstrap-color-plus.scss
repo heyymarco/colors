@@ -2,8 +2,6 @@
 
 
 
-$add-black      :   true    !default;
-$transp-var     :   0.25    !default;
 $var-root       : ":root"   !default;
 $var-prefix     : ""        !default;
 $cssvar: "";
@@ -12,6 +10,9 @@ $cssvar: "";
 } @else {
     $cssvar: "--#{$var-prefix}-";
 }
+
+$add-black      :   true    !default;
+$transp-var     :   0.25    !default;
 
 
 
