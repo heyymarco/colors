@@ -6,6 +6,12 @@ $add-black      :   true    !default;
 $transp-var     :   0.25    !default;
 $var-root       : ":root"   !default;
 $var-prefix     : ""        !default;
+$cssvar: "";
+@if (($var-prefix == null) or ($var-prefix == "")) {
+    $cssvar: "--";
+} @else {
+    $cssvar: "--#{$var-prefix}-";
+}
 
 
 
@@ -101,19 +107,13 @@ $yiq-text-light             : bscol.$yiq-text-light !default;
 
 
 
-$_cssvar: "";
-@if (($var-prefix == null) or ($var-prefix == "")) {
-    $_cssvar: "--";
-} @else {
-    $_cssvar: "--#{$var-prefix}-";
-}
 @mixin css-vars {
     @each $color, $value in $colors {
-        #{$_cssvar}#{$color}: #{$value};
+        #{$cssvar}#{$color}: #{$value};
     }
     
     @each $color, $value in $theme-colors {
-        #{$_cssvar}#{$color}: #{$value};
+        #{$cssvar}#{$color}: #{$value};
     }
 }
 @if ($var-root) {
