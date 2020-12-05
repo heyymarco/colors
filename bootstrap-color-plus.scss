@@ -108,7 +108,7 @@ $yiq-text-light             : bscol.$yiq-text-light !default;
 
 
 
-@mixin css-vars {
+@mixin cssvar {
     @each $color, $value in $colors {
         #{$cssvar}#{$color}: #{$value};
     }
@@ -118,5 +118,5 @@ $yiq-text-light             : bscol.$yiq-text-light !default;
     }
 }
 @if ($var-root) {
-    #{$var-root} { @include css-vars; }
+    #{$var-root} { @include cssvar; }
 }
