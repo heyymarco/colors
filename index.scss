@@ -1,6 +1,105 @@
-@forward "bootstrap-color-plus";
-@forward "bootstrap-color-func";
+// A set of common color definitions.
 
-@forward "function";
-@forward "background";
-@forward "border";
+
+
+@forward "bootstrap-colors";
+@forward "functions";
+
+
+
+// development:
+// @use "node_modules/@heymarco/sass-class-template/index" as *;
+// @use "node_modules/@heymarco/sass-selector/index" as selector;
+
+// production:
+@use "../../../node_modules/@heymarco/sass-class-template/index" as *;
+@use "../../../node_modules/@heymarco/sass-selector/index" as selector;
+
+
+
+@use "bootstrap-colors" as *;
+
+
+
+$alias              : "%color"                              !default;
+$class              : ""                                    !default;
+$var-root           : ":root"                               !default;
+$var-prefix         : "col"                                 !default;
+$var-prefix-base    : ""                                    !default;
+$cssvar: make-cssvar($var-prefix, $var-prefix-base);
+
+
+
+@include declare-cssvar($var-root) {
+    @each $name, $value in $colors {
+        #{$cssvar}#{$name} : #{$value};
+    }
+
+    @each $name, $value in $colors-transp {
+        #{$cssvar}#{$name} : #{$value};
+    }
+
+    @each $name, $value in $themes {
+        #{$cssvar}#{$name} : #{$value};
+    }
+
+    @each $name, $value in $themes-transp {
+        #{$cssvar}#{$name} : #{$value};
+    }
+}
+
+
+
+/* begin: specialized style */
+@mixin _bg-blur-fross-light($include) {
+    backdrop-filter: blur(1px);
+}
+@mixin bg-blur-fross-light {
+    @include _bg-blur-fross-light(true);
+}
+@include alias($alias) { @include selector.append("-bg-blur-fross-light") {
+    @include _bg-blur-fross-light(false);
+}}
+
+
+@mixin _bg-blur-fross-glass($include) {
+    backdrop-filter: blur(5px);
+}
+@mixin bg-blur-fross-glass {
+    @include _bg-blur-fross-glass(true);
+}
+@include alias($alias) { @include selector.append("-bg-blur-fross-glass") {
+    @include _bg-blur-fross-glass(false);
+}}
+
+
+@mixin _bg-blur-fross-thick($include) {
+    backdrop-filter: blur(5px) blur(5px) blur(5px) blur(5px);
+}
+@mixin bg-blur-fross-thick {
+    @include _bg-blur-fross-thick(true);
+}
+@include alias($alias) { @include selector.append("-bg-blur-fross-thick") {
+    @include _bg-blur-fross-thick(false);
+}}
+/* end: specialized style */
+
+
+
+/* begin: general style */
+@mixin _style($include) {
+    // @if ($include) { @include base.style; }
+    // @else          { @extend #{base.$alias} !optional; }
+}
+@mixin style {
+    @include _style(true);
+}
+@include alias($alias) {
+    @include _style(false);
+}
+/* end: general style */
+
+
+
+// utility class => no emit class
+// @include class($alias, $class, base.$class);
