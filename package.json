@@ -1,6 +1,6 @@
 {
   "name": "@heymarco/colors",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "A set of common color definitions.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/heyymarco/colors#readme",
   "dependencies": {
-    "@heymarco/sass-class-template": "^1.0.5",
-    "@heymarco/sass-selector": "^1.0.4"
+    "@heymarco/sass-class-template": "^1.0.6",
+    "@heymarco/sass-selector": "^1.0.5"
   }
 }
