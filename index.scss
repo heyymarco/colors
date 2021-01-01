@@ -28,6 +28,8 @@ $var-prefix         : "col"                                 !default;
 $var-prefix-base    : ""                                    !default;
 $cssvar: make-cssvar($var-prefix, $var-prefix-base);
 
+$contrast-threshold : 46.47%                                !default;
+
 
 
 @include declare-cssvar($var-root) {
@@ -46,6 +48,9 @@ $cssvar: make-cssvar($var-prefix, $var-prefix-base);
     @each $name, $value in $themes-transp {
         #{$cssvar}#{$name} : #{$value};
     }
+
+
+    #{$cssvar}contrast-threshold: $contrast-threshold;
 }
 
 

@@ -1,5 +1,8 @@
 @forward "sass:color";
+
 @use "sass:color" as color;
+@use "sass:list"  as list;
+@use "sass:map"   as map;
 
 
 
@@ -83,45 +86,46 @@ $_luminance-list: .0008 .001 .0011 .0013 .0015 .0017 .002 .0022 .0025 .0027 .003
     @return $max-ratio-color;
 }
 
-@function contrast-ratio($backg, $foreground: $contrast-light) {
-    $l1: luminance($backg);
-    $l2: luminance(opaque($backg, $foreground));
+@function contrast-ratio($backg, $foreg: $contrast-light) {
+    $lum-backg: luminance($backg);
+    $lum-foreg: luminance(opaque($backg, $foreg));
 
-    @return if($l1 > $l2, ($l1 + .05) / ($l2 + .05), ($l2 + .05) / ($l1 + .05));
+    @return if($lum-backg > $lum-foreg, ($lum-backg + .05) / ($lum-foreg + .05), ($lum-foreg + .05) / ($lum-backg + .05));
 }
 
 // Return WCAG2.0 relative luminance
 // See https://www.w3.org/WAI/GL/wiki/Relative_luminance
 // See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
 @function luminance($color) {
-    $rgb: ("r": red($color),
-            "g": green($color),
-            "b": blue($color));
+    $rgb: (
+        "r": color.red($color),
+        "g": color.green($color),
+        "b": color.blue($color)
+    );
 
-    @each $name,
-    $value in $rgb {
-        $value: if($value / 255 < .03928, $value / 255 / 12.92, nth($_luminance-list, $value + 1));
-        $rgb: map-merge($rgb, ($name: $value));
+    @each $name, $value in $rgb {
+        $value  : if($value / 255 < .03928, $value / 255 / 12.92, list.nth($_luminance-list, $value + 1));
+        $rgb    : map.merge($rgb, ($name: $value));
     }
 
-    @return (map-get($rgb, "r") * .2126)+(map-get($rgb, "g") * .7152)+(map-get($rgb, "b") * .0722);
+    @return (map.get($rgb, "r") * .2126)+(map.get($rgb, "g") * .7152)+(map.get($rgb, "b") * .0722);
 }
 
 // Return opaque color
 // opaque(#fff, rgba(0, 0, 0, .5)) => #808080
-@function opaque($backg, $foreground) {
-    @return mix(rgba($foreground, 1), $backg, opacity($foreground) * 100);
+@function opaque($backg, $foreg) {
+    @return color.mix(rgba($foreg, 1), $backg, opacity($foreg) * 100);
 }
 
 // scss-docs-start color-functions
 // Tint a color: mix a color with white
 @function tint($color, $weight) {
-    @return mix(white, $color, $weight);
+    @return color.mix(white, $color, $weight);
 }
 
 // Shade a color: mix a color with black
 @function shade($color, $weight) {
-    @return mix(black, $color, $weight);
+    @return color.mix(black, $color, $weight);
 }
 
 // Shade the color if the weight is positive, else tint it

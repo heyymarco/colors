@@ -1,6 +1,6 @@
 {
   "name": "@heymarco/colors",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "A set of common color definitions.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
