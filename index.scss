@@ -30,7 +30,7 @@ $var-prefix         : "col"                                 !default;
 $var-prefix-base    : ""                                    !default;
 $cssvar: make-cssvar($var-prefix, $var-prefix-base);
 
-$contrast-threshold : calc(((var(#{$cssvar}contrast-light) + 0.05) / var(#{$cssvar}min-contrast-ratio)) - 0.05) !default;
+$contrast-threshold : calc(((1 + 0.05) / var(#{$cssvar}min-contrast-ratio)) - 0.05) !default;
 
 
 
