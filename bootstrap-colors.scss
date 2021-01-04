@@ -25,13 +25,13 @@ $black:    #000000 !default;
 
 // The contrast ratio to reach against white, to determine if color changes from "light" to "dark". Acceptable values for WCAG 2.0 are 3, 4.5 and 7.
 // See https://www.w3.org/TR/WCAG20/#visual-audio-contrast-contrast
-$min-contrast-ratio : 4.45                                  !default;
+$contrast-ratio-min     : 4.45                                  !default;
 
 // Customize the light and dark text colors for use in our color contrast function.
-$contrast-dark      : $black                                !default;
-$contrast-light     : $white                                !default;
+$contrast-dark-sass     : $black                                !default;
+$contrast-light-sass    : $white                                !default;
 
-$transp-var         :   0.25                                !default;
+$transp-var             :   0.25                                !default;
 
 // A list of pre-calculated numbers of pow(($value / 255 + .055) / 1.055, 2.4). (from 0 to 255)
 // stylelint-disable-next-line scss/dollar-variable-default, scss/dollar-variable-pattern
@@ -40,7 +40,7 @@ $_luminance-list: .0008 .001 .0011 .0013 .0015 .0017 .002 .0022 .0025 .0027 .003
 
 
 /* begin: functions */
-@function contrast($backg, $contrast-dark: $contrast-dark, $contrast-light: $contrast-light, $min-contrast-ratio: $min-contrast-ratio) {
+@function contrast($backg, $contrast-dark: $contrast-dark-sass, $contrast-light: $contrast-light-sass, $contrast-ratio-min: $contrast-ratio-min) {
   $foregs: $contrast-light, $contrast-dark, $white, $black;
   $max-ratio: 0;
   $max-ratio-color: null;
@@ -48,7 +48,7 @@ $_luminance-list: .0008 .001 .0011 .0013 .0015 .0017 .002 .0022 .0025 .0027 .003
   @each $color in $foregs {
       $contrast-ratio: contrast-ratio($backg, $color);
 
-      @if $contrast-ratio>$min-contrast-ratio {
+      @if $contrast-ratio>$contrast-ratio-min {
           @return $color;
       }
 
@@ -58,12 +58,12 @@ $_luminance-list: .0008 .001 .0011 .0013 .0015 .0017 .002 .0022 .0025 .0027 .003
       }
   }
 
-  @warn "Found no color leading to #{$min-contrast-ratio}:1 contrast ratio against #{$backg}...";
+  @warn "Found no color leading to #{$contrast-ratio-min}:1 contrast ratio against #{$backg}...";
 
   @return $max-ratio-color;
 }
 
-@function contrast-ratio($backg, $foreg: $contrast-light) {
+@function contrast-ratio($backg, $foreg: $contrast-light-sass) {
   $lum-backg: luminance($backg);
   $lum-foreg: luminance(opaque($backg, $foreg));
 
