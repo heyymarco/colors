@@ -7,20 +7,11 @@
 
 
 
-// development:
-// @use "node_modules/@heymarco/sass-class-template/index" as *;
-// @use "node_modules/@heymarco/sass-selector/index" as selector;
-// @use "node_modules/@heymarco/sass-string/index" as string;
-
-// production:
-@use "../../../node_modules/@heymarco/sass-class-template/index" as *;
-@use "../../../node_modules/@heymarco/sass-selector/index" as selector;
-@use "../../../node_modules/@heymarco/sass-string/index" as string;
-
-
-
-@use "bootstrap-colors" as *;
-@use "sass:map"         as map;
+@use "@heymarco/sass-class-template/src/index" as *;
+@use "@heymarco/sass-selector/src/index"       as selector;
+@use "@heymarco/sass-string/src/index"         as string;
+@use "bootstrap-colors"                        as *;
+@use "sass:map"                                as map;
 
 
 
